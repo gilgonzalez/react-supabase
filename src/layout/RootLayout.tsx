@@ -19,7 +19,7 @@ const RootLayout = () => {
       </div>
       <div className="flex flex-row">
 
-      <div className="min-h-screen w-36">
+      <div className="min-h-screen w-44">
         <NavBar />
       </div>
       <main className="w-full h-full px-8 md:px-8">

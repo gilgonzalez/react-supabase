@@ -67,8 +67,14 @@ const MainRouter = () => {
             <Route path=":id/dashboard" element={<Dashboard />} />
             <Route path=":id/players" element={<Players />} />
             <Route path=":id/players/:playerId" element={<Player />} />
-            <Route path=":id/convocatorias" element={<Convocatorias />} />
-            <Route path=":id/convocatorias/:idConvocatoria" element={<Convocatoria />} />
+            <Route path=":id/players/create" element={<Player />} />
+            <Route path=":id/callslist" element={<Convocatorias />} />
+            <Route path=":id/callslist/:idCall" element={<Convocatoria />} />
+            <Route path=":id/callslist/create" element={<Convocatoria />} />
+            <Route path=":id/sesions" element={<Convocatorias />} />
+            <Route path=":id/sesions/:sesionId" element={<Convocatoria />} />
+            <Route path=":id/sesions/create" element={<Convocatoria />} />
+            <Route path=":id/board" element={<Convocatoria />} />
           </Route>
         </Route>
         <Route path='login' element={<Login />} />

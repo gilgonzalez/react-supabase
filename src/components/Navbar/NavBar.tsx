@@ -30,12 +30,20 @@ export default function NavBar() {
     },
     {
       title: "Convocatorias",
-      path: `${basePath}/convocatorias`,
+      path: `${basePath}/callslist`,
+    },
+    {
+      title: "Sesiones",
+      path: `${basePath}/sesions`,
+    },
+    {
+      title: "Pizarra",
+      path: `${basePath}/board`,
     },
   ].filter(Boolean);
 
   return (
-    <nav className="flex p-2 h-full place-items-start bg-green-300">
+    <nav className="flex p-2 h-full place-items-start bg-gradient-to-r from-green-500 ">
       <NavigationMenu>
         <NavigationMenuList className="gap-2 flex-col w-max">
           {items.map(

@@ -10,15 +10,15 @@ interface Props {
 const NavBarItem = ({ title, path }: Props) => {
   useEffect(() => {});
   return (
-    <NavigationMenuItem className="flex w-full ">
+    <NavigationMenuItem className="flex w-full">
       <NavLink
         to={path}
         className={({ isActive }) => {
           return (
             (isActive
-              ? "bg-green-600 translate-x-5 text-slate-300"
+              ? "bg-green-600 translate-x-5 text-white"
               : " bg-green-400 hover:bg-gray-400") +
-            " p-1.5 rounded-md bg w-36 text-center hover:translate-x-5 hover:bg-green-600 transition-all "
+            " border-2 border-green-600 font-semibold p-1.5 rounded-md bg w-36 text-center text-white hover:translate-x-5 hover:bg-green-600 transition-transform"
           );
         }}
       >
