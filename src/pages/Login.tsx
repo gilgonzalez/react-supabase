@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react"
-import { client } from "../supabase/client"
+import { supabase } from "../supabase/client"
 
 const Login = () => {
 
@@ -8,7 +8,7 @@ const Login = () => {
   const handleSubmit = async (e : FormEvent<HTMLFormElement> ) => { 
     e.preventDefault()
     try {
-      await client.auth.signInWithOtp({
+      await supabase.auth.signInWithOtp({
         email: email,
         options: {
           emailRedirectTo: 'http://localhost:5173',

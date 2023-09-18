@@ -1,17 +1,23 @@
-import Home from "./pages/Home"
-import Login from "./pages/Login"
-import { Route, Routes } from "react-router-dom"
-import NotFound from "./pages/NotFound"
+import { QueryClient, QueryClientProvider } from "react-query"
+import { ReactQueryDevtools } from "react-query/devtools"
+import MainRouter from "./router/MainRouter"
 
 function App() {
 
+
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: 0
+      }
+    }
+  })
   return (
     <>
-      <Routes>
-        <Route  path="/" element={<Home/>}/>
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<NotFound/>}/>
-      </Routes>
+      <QueryClientProvider client={queryClient}>
+            <MainRouter />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </>
   )
 }
