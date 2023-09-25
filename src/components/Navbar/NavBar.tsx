@@ -43,7 +43,7 @@ export default function NavBar() {
   ].filter(Boolean);
 
   return (
-    <nav className="flex p-2 h-full place-items-start bg-gradient-to-r from-green-500 ">
+    <nav className="flex p-2 h-full place-items-start  ">
       <NavigationMenu>
         <NavigationMenuList className="gap-2 flex-col w-max">
           {items.map(
