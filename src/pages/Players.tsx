@@ -1,8 +1,12 @@
+import ListPlayers from "@/components/teamManager/ListPlayers"
 
 const Players = () => {
-  console.log('playres')
+  
+  
   return (
-    <div className="">Players</div>
+    <div>
+      <ListPlayers/>
+    </div>
   )
 }
 

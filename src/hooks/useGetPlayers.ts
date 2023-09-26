@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
-import { client } from "../supabase/client";
+import { supabase } from "../supabase/client";
 import { Player } from "../types/Player";
 
 const fetchJugadores = async () => {
-  const { data, error } = await client
+  const { data, error } = await supabase
     .from("jugadores")
     .select("*")
     .order("id", { ascending: true });

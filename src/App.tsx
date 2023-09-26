@@ -4,7 +4,6 @@ import MainRouter from "./router/MainRouter"
 
 function App() {
 
-
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {

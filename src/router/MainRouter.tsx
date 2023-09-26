@@ -12,6 +12,7 @@ import Player from '@/pages/Player';
 import Login from '@/pages/Login';
 import Convocatoria from '@/pages/Convocatoria';
 import Convocatorias from '@/pages/Convocatorias';
+import NotFound from '@/pages/NotFound';
 
 const MainRouter = () => {
 
@@ -78,6 +79,7 @@ const MainRouter = () => {
           </Route>
         </Route>
         <Route path='login' element={<Login />} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
   )

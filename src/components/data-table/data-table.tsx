@@ -15,18 +15,18 @@ import {
 
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { ArrowDown, ArrowUp, Columns, DownloadCloud } from 'lucide-react';
-import { Button } from '../../../components/ui/button';
+import { Button } from '@/components/ui/button';
 import {
     DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger
-} from "../../../components/ui/dropdown-menu";
-import { Input } from "../../../components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select';
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
     Table,
     TableBody,
     TableCell, TableHead, TableHeader, TableRow
-} from "../../../components/ui/table";
-import { cn } from '../../../lib/utils';
+} from "@/components/ui/table";
+import { cn } from '@/lib/utils';
 import { DataTablePagination } from './data-table-pagination';
 
 interface DataTableProps<TData, TValue> {
@@ -238,14 +238,14 @@ export function DataTable<TData, TValue>({
                 <Table
                     style={{
                         width: table.getCenterTotalSize(),
-                        minWidth: "100%"
+                        minWidth: "100%",
                     }}
                 >
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow
                                 key={headerGroup.id}
-                                className="flex flex-row w-full"
+                                className="flex flex-row w-full bg-red-400"
                             >
                                 {headerGroup.headers.map((header) => {
                                     return (
@@ -287,7 +287,7 @@ export function DataTable<TData, TValue>({
                                                 {...{
                                                     onMouseDown: header.getResizeHandler(),
                                                     onTouchStart: header.getResizeHandler(),
-                                                    className: `resizer w-1 h-full bg-red-800 ${header.column.getIsResizing() ? 'bg-red-950' : ''}`,
+                                                    className: `resizer w-1 h-full bg-green-800 ${header.column.getIsResizing() ? 'bg-green-950' : ''}`,
                                                     style: {
                                                         cursor: "col-resize",
                                                         userSelect: "none",
