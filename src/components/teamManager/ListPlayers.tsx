@@ -15,6 +15,7 @@ const ListPlayers = () => {
     data && setPlayers(data)
   }, [isFetching, data])
 
+  //no vea
   return (
     <>
       <div>ListPlayers</div>
