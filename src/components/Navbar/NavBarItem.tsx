@@ -16,12 +16,12 @@ const NavBarItem = ({ title, path, isOpen, icon }: Props) => {
       <NavLink
         to={path}
         className={({ isActive }) => {
-          return `${isActive ? 'text-white' : ''} flex flex-row gap-2 transition-all duration-300`
+          return `${isActive ? 'text-white' : ''} flex flex-row gap-2 transition-all `
             
         }}
       >
         <span className={`flex flex-row gap-2 `}>{icon}</span>
-        <p className={`${isOpen ? '' : '-translate-x-10 text-transparent '} font-bold text-sm transition-all duration-1000`}>{title}</p>
+        <p className={`${isOpen ? '' : 'scale-0 -translate-x-20 w-0'} font-bold text-sm transition-transform duration-1000`}>{title}</p>
       </NavLink>
     </NavigationMenuItem>
   );

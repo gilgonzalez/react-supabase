@@ -1,19 +1,17 @@
-import { useState } from "react";
 import {  LayoutDashboard, ListChecks, Menu, Presentation, TrafficCone, Users2, X} from "lucide-react";
 import { NavigationMenu, NavigationMenuList } from "../ui/navigation-menu";
 import NavBarItem from "./NavBarItem";
+import { useNavbarStore } from "@/store/navbar";
 
 
 const VerticalNavbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  //const [isOpen, setIsOpen] = useState(false);
+  const {isOpen, toggle} = useNavbarStore(state => state )
   
   const teamId = "1";
   const basePath = `teams/${teamId}`;
   const isAdmin = true;
 
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
-  };
   const items = [
     isAdmin && {
       title: "Dashboard",
@@ -48,11 +46,11 @@ const VerticalNavbar = () => {
         <div className="flex flex-row">
           <Menu
             className={`w-6 h-6 cursor-pointer ${isOpen ? "text-transparent " : "text-gray-900 "} transition-all duration-1000`}
-            onClick={toggleNavbar}
+            onClick={() => { if(!isOpen) toggle() }}
           />
           <X
-          className={`w-6 h-6 cursor-pointer translate-x-20 ${isOpen ? "text-white " : "text-transparent"} transition-all duration-500`}
-          onClick={toggleNavbar}
+          className={`w-6 h-6 cursor-pointer translate-x-20 ${isOpen ? "text-white " : "text-transparent scale-0"} transition-all duration-500`}
+            onClick={() => { if(isOpen) toggle() }}
         />
         </div>
         <NavigationMenu>

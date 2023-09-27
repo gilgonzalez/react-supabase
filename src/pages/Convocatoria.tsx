@@ -1,7 +1,7 @@
 
 const Convocatoria = () => {
   return (
-    <div>Convocatoria</div>
+    <div className="bg-black">Convocatoria</div>
   )
 }
 
