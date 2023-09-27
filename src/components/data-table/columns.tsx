@@ -70,7 +70,6 @@ export const columns: ColumnDef<Payment>[] = [
         header: "Fecha de creación",
         cell: ({row}) => {
             const rowValue = new Date(row.original.created_at);
-            console.log(rowValue);
             return (
                 <p> {rowValue.toLocaleDateString()} </p>
             )

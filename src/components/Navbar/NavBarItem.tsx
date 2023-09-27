@@ -5,24 +5,23 @@ import { useEffect} from "react";
 interface Props {
   title: string;
   path: string;
+  isOpen: boolean;
+  icon: React.ReactNode
 }
 
-const NavBarItem = ({ title, path }: Props) => {
+const NavBarItem = ({ title, path, isOpen, icon }: Props) => {
   useEffect(() => {});
   return (
-    <NavigationMenuItem className="flex w-full">
+    <NavigationMenuItem className="flex self-start">
       <NavLink
         to={path}
         className={({ isActive }) => {
-          return (
-            (isActive
-              ? "bg-green-600 translate-x-5 text-white"
-              : " bg-green-400 hover:bg-gray-400") +
-            " border-2 border-green-600 font-semibold p-1.5 rounded-md bg w-36 text-center text-white hover:translate-x-5 hover:bg-green-600 transition-transform"
-          );
+          return `${isActive ? 'text-white' : ''} flex flex-row gap-2 transition-all duration-300`
+            
         }}
       >
-        {title}
+        <span className={`flex flex-row gap-2 `}>{icon}</span>
+        <p className={`${isOpen ? '' : '-translate-x-10 text-transparent '} font-bold text-sm transition-all duration-1000`}>{title}</p>
       </NavLink>
     </NavigationMenuItem>
   );

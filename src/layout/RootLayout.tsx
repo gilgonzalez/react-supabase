@@ -1,6 +1,6 @@
-import NavBar from '@/components/Navbar/NavBar'
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { Outlet } from 'react-router-dom'
+import VerticalNavbar from '../components/Navbar/VerticalNavbar';
 
 const RootLayout = () => {
   return (
@@ -20,7 +20,8 @@ const RootLayout = () => {
       <div className="flex flex-row">
 
       <div className="min-h-screen w-44">
-        <NavBar />
+          {/* <NavBar /> */}
+          <VerticalNavbar/>
       </div>
       <main className="w-full h-full px-8 md:px-8">
         <Outlet />

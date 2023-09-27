@@ -9,7 +9,6 @@ const ListPlayers = () => {
 
   const { data, isFetching } = useGetPlayers()
 
-  console.log(data);
   
   useEffect(() => {
     data && setPlayers(data)
