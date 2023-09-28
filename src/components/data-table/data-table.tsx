@@ -245,7 +245,7 @@ export function DataTable<TData, TValue>({
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow
                                 key={headerGroup.id}
-                                className="flex flex-row w-full bg-red-400"
+                                className="flex flex-row w-full"
                             >
                                 {headerGroup.headers.map((header) => {
                                     return (
@@ -253,7 +253,7 @@ export function DataTable<TData, TValue>({
                                             key={header.id}
                                             className={cn(
                                                 cn(
-                                                    "flex flex-grow px-0 text-xs h-8 py-1 bg-white relative",
+                                                    "flex flex-grow px-0 text-[16px] h-8 py-1 bg-white relative bg-green-600 text-color-black",
                                                     header.column.getIsPinned() === "left" ?
                                                         "sticky left-0 z-10" :
                                                         header.column.getIsPinned() === "right" ? "sticky right-0 z-10" :
@@ -320,7 +320,7 @@ export function DataTable<TData, TValue>({
                                                 key={cell.id}
                                                 className={cn(
                                                     cn(
-                                                        `flex flex-grow text-[10px] px-5 py-1 truncate`,
+                                                        `flex flex-grow text-[14px] px-5 py-1 truncate`,
                                                         cell.column.getIsPinned() === "left" ?
                                                             "sticky left-0 z-10" :
                                                             cell.column.getIsPinned() === "right" ?
