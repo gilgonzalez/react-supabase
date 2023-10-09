@@ -1,6 +1,8 @@
 import { useQuery } from "react-query";
 import { supabase } from "../supabase/client";
-import { Player } from "../types/Player";
+import { Tables } from "@/supabase/utility.types";
+
+type Jugador = Tables<"jugadores">
 
 const fetchJugadores = async () => {
   const { data, error } = await supabase
@@ -15,5 +17,5 @@ const fetchJugadores = async () => {
 }
 
 export default function useGetPlayers() {
-  return useQuery<Player[]>(["jugadores"], () => fetchJugadores())
+  return useQuery<Jugador[]>(["jugadores"], () => fetchJugadores())
 }

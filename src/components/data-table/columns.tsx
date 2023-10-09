@@ -3,20 +3,12 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { Tables } from "@/supabase/utility.types";
+import { Button } from "../ui/button";
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
-    id: string
-    status: "pending" | "processing" | "success" | "failed"
-    email: string
-    activo: boolean
-    created_at: Date
-}
+type Player = Tables<"jugadores">
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Player>[] = [
     // {
     //     id: "select",
     //     header: ({ table }) => (
@@ -52,10 +44,10 @@ export const columns: ColumnDef<Payment>[] = [
         },
     },
     {
-        accessorKey: "activo",
+        accessorKey: "active",
         header: "Activo",
         cell: ({ row }) => {
-            const rowValue = row.original.activo;
+            const rowValue = row.original.active;
             return (
                 <Badge variant={rowValue ? "active": "inactive"}
                 // className={row.getValue("status") === "published" ? "bg-emerald-500 text-white" : ""}
@@ -76,35 +68,16 @@ export const columns: ColumnDef<Payment>[] = [
         }
     },
     {
-        id: "actions",
-        cell: ({ row }) => {
-            return (
-                <div className="flex justify-end items-end">
-                    <Button variant={"outline"} size={"sm"}>
-                        Edit
-                    </Button>
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem
-                            
-                        >
-                            Copy payment ID
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>Edit Course</DropdownMenuItem>
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-                </div>
-            )
-        },
-    }
+      accessorKey: "actions",
+      header: "Acciones",
+      cell: () => {
+          
+          return (
+            <div className="flex flex-row space-x-2">
+              <Button size={"sm"} variant={"secondary"}>Editar</Button>
+              <Button size={"sm"} variant={"destructive"}>Eliminar</Button>
+            </div>
+          )
+      }
+  },
 ]
