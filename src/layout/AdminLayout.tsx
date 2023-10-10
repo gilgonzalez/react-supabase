@@ -1,6 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { useAuthStore } from "@/store/auth";
+import { Navigate, Outlet } from "react-router-dom";
 
 export default function AdminLayout() {
+  const user = useAuthStore(state => state.user)
+  console.log({user})
+
+  if (!user) { 
+
+    return <Navigate to="/login" />
+  }
 
     return (
         <div className="flex flex-1 flex-col h-full w-full py-4">

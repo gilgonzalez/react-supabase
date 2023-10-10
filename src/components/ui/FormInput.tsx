@@ -22,6 +22,8 @@ type FormInputProps<T extends FieldValues> = {
   disabled?: boolean;
   loading?: boolean;
   type?: HTMLInputTypeAttribute;
+  className?: string;
+  labelClassName?: string;
 };
 
 export default function FormInput<T extends FieldValues>({
@@ -33,6 +35,8 @@ export default function FormInput<T extends FieldValues>({
   loading = false,
   disabled,
   type,
+  className,
+  labelClassName
 }: FormInputProps<T>) {
 
   const [visible, toggle] = useState(false)
@@ -49,11 +53,11 @@ export default function FormInput<T extends FieldValues>({
         name={name}
         render={({ field }) => (
           <FormItem>
-            {label && <FormLabel className="font-semibold">{label}</FormLabel>}
+            {label && <FormLabel className={labelClassName}>{label}</FormLabel>}
             {kind === "text" && type !== "password" && (
               <FormControl>
                 <Input
-                  className="h-10"
+                  className={`h-10 ${className} font-semibold`}
                   type={type}
                   disabled={disabled}
                   placeholder={placeholder}
@@ -67,6 +71,7 @@ export default function FormInput<T extends FieldValues>({
                   disabled={disabled}
                   placeholder={placeholder}
                   {...field}
+                  className={className}
                 />
               </FormControl>
             )}
@@ -76,7 +81,7 @@ export default function FormInput<T extends FieldValues>({
                   <Input
                     type={visible ? "text" : "password"}
                     placeholder="*******"
-                    className="h-10"
+                    className={`h-10 ${className} font-semibold`}
                     {...field}
                   />
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 cursor-pointer">

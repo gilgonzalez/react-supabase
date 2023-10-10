@@ -2,6 +2,7 @@ import RootLayout from '@/layout/RootLayout'
 import { User } from '@supabase/supabase-js'
 import { useEffect, useState } from 'react'
 import { supabase } from "@/supabase/client";
+import { User as ZustandUser} from '@/store/auth'
 
 import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom'
 import RequireAuth from '@/layout/RequireAuth';
@@ -13,12 +14,11 @@ import Login from '@/pages/Login';
 import Convocatoria from '@/pages/Convocatoria';
 import Convocatorias from '@/pages/Convocatorias';
 import NotFound from '@/pages/NotFound';
+import { useAuthStore } from '@/store/auth';
 
 const MainRouter = () => {
 
-  const [user, setUser] = useState<
-    (User & { role: string; }) | null
-  >(null);
+  const { user, setUser} = useAuthStore(state => state)
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,10 +27,17 @@ const MainRouter = () => {
         if (session) {
           setLoading(true);
           const user_id = session.user.id;
-          user_id && setUser({ ...session.user, role: "ADMIN" });
-
+          const user : ZustandUser = {
+            status: "authenticated",
+            id: user_id,
+            email: session.user.email ?? null,
+            name: ''
+          }
+          user_id && setUser(user);
+          console.log(user)
         } else {
           setUser(null);
+          console.log({user})
         }
 
         setLoading(false);

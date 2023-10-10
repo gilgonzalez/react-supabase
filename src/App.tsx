@@ -1,6 +1,9 @@
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 import MainRouter from "./router/MainRouter"
+import { useEffect } from "react"
+import { usePlayersStore } from "./store/players"
+import { Toaster } from "@/components/ui/toaster"
 
 function App() {
 
@@ -11,10 +14,16 @@ function App() {
       }
     }
   })
+  const { loadPlayers } = usePlayersStore(state => state)
+  
+  useEffect(() => {
+    loadPlayers()
+   },[loadPlayers])
   return (
     <>
       <QueryClientProvider client={queryClient}>
-            <MainRouter />
+        <MainRouter />
+        <Toaster />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </>

@@ -11,6 +11,7 @@ import { Checkbox } from "../ui/checkbox"
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { supabase } from "@/supabase/client"
+import { usePlayersStore } from "@/store/players"
 
 
 const schema = z.object(
@@ -23,7 +24,8 @@ const resolver = zodResolver(schema);
 
 const ListPlayers = () => {
   const [open, setOpen] = useState(false)
-  const { data: players , isFetching, refetch } = useGetPlayers()
+  const players = usePlayersStore(state => state.players)
+  const { refetch, isFetching } = useGetPlayers()
   const form = useForm<z.infer<typeof schema>>({ values: { name: "", active: false }, mode: "onChange", resolver  })
 
   const onSubmit = async (inputs: z.infer<typeof schema>) => { 
