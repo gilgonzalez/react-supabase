@@ -24,6 +24,13 @@ const MainRouter = () => {
   useEffect(() => {
     const subscription = supabase.auth.onAuthStateChange(
       async (_event, session) => {
+        if (_event == "PASSWORD_RECOVERY") {
+          const newPassword = prompt("What would you like your new password to be?");
+          const { data, error } = await supabase.auth
+            .updateUser({ password: newPassword })
+          if (data) alert("Password updated successfully!")
+          if (error) alert("There was an error updating your password.")
+        }
         if (session) {
           setLoading(true);
           const user_id = session.user.id;
@@ -31,13 +38,12 @@ const MainRouter = () => {
             status: "authenticated",
             id: user_id,
             email: session.user.email ?? null,
-            name: ''
+            name: '',
+            team: "1"
           }
           user_id && setUser(user);
-          console.log(user)
         } else {
           setUser(null);
-          console.log({user})
         }
 
         setLoading(false);
@@ -45,7 +51,7 @@ const MainRouter = () => {
     );
 
     return () => subscription.data.subscription.unsubscribe();
-  }, []);
+  }, [setUser, user]);
 
   const isAdmin = true;
   const isAllowed = isAdmin;

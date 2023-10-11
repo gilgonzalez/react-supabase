@@ -12,6 +12,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { supabase } from "@/supabase/client"
 import { usePlayersStore } from "@/store/players"
+import { useNavigate } from "react-router-dom"
 
 
 const schema = z.object(
@@ -24,6 +25,7 @@ const resolver = zodResolver(schema);
 
 const ListPlayers = () => {
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
   const players = usePlayersStore(state => state.players)
   const { refetch, isFetching } = useGetPlayers()
   const form = useForm<z.infer<typeof schema>>({ values: { name: "", active: false }, mode: "onChange", resolver  })
@@ -45,7 +47,7 @@ const ListPlayers = () => {
 
   return (
     <>
-      {players && <DataTable tableId="players" columns={columns} data={players} loading={isFetching} extraButtons={<Button onClick={() => setOpen(true)} variant="outline">Nuevo Jugador</Button>} />}
+      {players && <DataTable rowClick={(ev)=> navigate(`${ev.id}`)} tableId="players" columns={columns} data={players} loading={isFetching} extraButtons={<Button className="w-36" onClick={() => setOpen(true)} variant="primary">Nuevo Jugador</Button>} />}
 
       <Dialog open={open} onOpenChange={() => setOpen(false)}>
         <DialogContent className="sm:max-w-[425px]">

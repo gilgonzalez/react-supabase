@@ -3,8 +3,6 @@ import { Navigate, Outlet } from "react-router-dom";
 
 export default function AdminLayout() {
   const user = useAuthStore(state => state.user)
-  console.log({user})
-
   if (!user) { 
 
     return <Navigate to="/login" />
